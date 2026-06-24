@@ -14,6 +14,8 @@ e nunca inventadas**.
 > Automação de browser com Patchright (fork stealth do Playwright) + perfil de Chrome
 > persistente + autenticação manual + extração de fontes do painel do Perplexity.
 
+![Captura de tela da skill consultando o Perplexity em foco acadêmico, com a resposta e a lista de fontes (título + URL)](images/screenshot.png)
+
 ---
 
 ## ⚠️ Importante
