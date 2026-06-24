@@ -1,5 +1,10 @@
 # Perplexity Skill for Claude Code
 
+[![Versão](https://img.shields.io/badge/vers%C3%A3o-0.2.1-2E75B6)](CHANGELOG.md)
+[![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-375623)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%2B-1F3864)](requirements.txt)
+[![CI](https://github.com/rinaldops/perplexity-skill/actions/workflows/ci.yml/badge.svg)](.github/workflows/ci.yml)
+
 **Deixe o [Claude Code](https://github.com/anthropics/claude-code) consultar o Perplexity AI direto do terminal, com foco em busca acadêmica e respostas acompanhadas de FONTES verificáveis.**
 
 Pensada para apoiar pesquisa comparada — confrontar ciência e filosofia acadêmica com a

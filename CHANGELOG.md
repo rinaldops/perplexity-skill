@@ -27,6 +27,10 @@ e o projeto adota [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ## [0.2.1] - 2026-06-24
 
+### Adicionado
+- Badges no README (Versão, Licença, Python, CI) e workflow de CI do GitHub Actions
+  (`.github/workflows/ci.yml`) com checagem de sintaxe dos scripts.
+
 ### Corrigido
 - **UnicodeEncodeError no primeiro uso (Windows)**: o `run.py` e o `setup_environment.py`
   rodam sob o Python do sistema (cp1252) e quebravam ao imprimir emojis antes de o venv
