@@ -1,0 +1,10 @@
+# Dependências da Skill Perplexity
+# Instaladas no .venv local da skill
+
+# Automação de browser com anti-detecção (fork stealth do Playwright)
+# Após instalar, rode: patchright install chrome
+# (Chrome real, não Chromium, para confiabilidade e melhor fingerprinting)
+patchright==1.55.2
+
+# Gerenciamento de variáveis de ambiente / .env
+python-dotenv==1.0.0

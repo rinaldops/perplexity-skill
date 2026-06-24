@@ -1,0 +1,73 @@
+# Ambiente virtual
+.venv/
+venv/
+env/
+*.venv
+
+# Dados da skill (NUNCA commitar — contém autenticação/sessão!)
+data/
+data/*
+data/**/*
+
+# Específico do Claude
+.claude/
+*.claude
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+scripts/__pycache__/
+scripts/*.pyc
+
+# Variáveis de ambiente
+.env
+*.env
+.env.*
+
+# Estado de browser/auth (caso caia fora de data/ por engano)
+browser_state/
+browser_profile/
+auth/
+auth_info.json
+state.json
+cookies.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Logs
+*.log
+logs/
+*.debug
+
+# Backups
+*.backup
+*.bak
+*.tmp
+*.temp
+
+# Artefatos de teste
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# Artefatos de pacote
+dist/
+build/
+*.egg-info/
