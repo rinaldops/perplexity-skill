@@ -10,6 +10,14 @@ import subprocess
 import venv
 from pathlib import Path
 
+# Roda sob o Python do sistema (Windows cp1252); garante UTF-8 para os emojis
+# dos prints não quebrarem com UnicodeEncodeError.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 
 class SkillEnvironment:
     """Gerencia o ambiente virtual específico da skill."""

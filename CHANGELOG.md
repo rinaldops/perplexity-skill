@@ -25,6 +25,14 @@ e o projeto adota [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 - Correções de Windows desde o início: pip via `python -m pip`, `PYTHONUTF8`/
   `PYTHONIOENCODING`, caminhos via `pathlib` + detecção `os.name == 'nt'`.
 
+## [0.2.1] - 2026-06-24
+
+### Corrigido
+- **UnicodeEncodeError no primeiro uso (Windows)**: o `run.py` e o `setup_environment.py`
+  rodam sob o Python do sistema (cp1252) e quebravam ao imprimir emojis antes de o venv
+  existir. Agora ambos forçam UTF-8 na própria saída (`sys.stdout.reconfigure`) e o
+  `run.py` propaga `PYTHONUTF8`/`PYTHONIOENCODING` para os subprocessos.
+
 ## [0.2.0] - 2026-06-24
 
 ### Mudado

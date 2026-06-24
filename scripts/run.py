@@ -12,6 +12,18 @@ import sys
 import subprocess
 from pathlib import Path
 
+# Este wrapper roda sob o Python do SISTEMA (não o do venv), que no Windows usa
+# cp1252 — então os emojis dos prints abaixo (e do setup_environment, que é
+# chamado como subprocesso) quebram com UnicodeEncodeError no primeiro uso.
+# Forçamos UTF-8 na saída deste processo e propagamos para os subprocessos.
+os.environ.setdefault("PYTHONUTF8", "1")
+os.environ.setdefault("PYTHONIOENCODING", "utf-8")
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 
 def get_venv_python() -> Path:
     """Retorna o executável Python do ambiente virtual da skill."""
