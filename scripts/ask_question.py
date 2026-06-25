@@ -271,8 +271,6 @@ def ask_perplexity(question: str, focus: str = "academic", headless: bool = Fals
 
         # Digita e envia.
         print("  ⌨️  Digitando a pergunta...")
-        # Re-localiza o input (o menu de foco pode tê-lo desfocado).
-        query_element = StealthUtils.find_first(page, QUERY_INPUT_SELECTORS, timeout_ms=5000)
         StealthUtils.human_type(query_element, question)
 
         print("  📤 Enviando...")

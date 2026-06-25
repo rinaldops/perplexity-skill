@@ -1,6 +1,6 @@
 # Perplexity Skill for Claude Code
 
-[![Versão](https://img.shields.io/badge/vers%C3%A3o-0.2.1-2E75B6)](CHANGELOG.md)
+[![Versão](https://img.shields.io/badge/vers%C3%A3o-0.3.0-2E75B6)](CHANGELOG.md)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-MIT-375623)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-1F3864)](requirements.txt)
 [![CI](https://github.com/rinaldops/perplexity-skill/actions/workflows/ci.yml/badge.svg)](.github/workflows/ci.yml)
@@ -131,7 +131,7 @@ Sua pergunta → Claude chama o Perplexity (foco acadêmico) → resposta + font
 
 1. Abre o Perplexity num perfil de Chrome persistente e autenticado.
 2. **Navega para o vertical acadêmico** (`/academic`) — é assim que o foco é aplicado.
-3. Digita a pergunta de forma humana (char a char) e envia.
+3. Preenche a pergunta via `fill()` + digita os últimos chars lentamente (humanizado, sem lentidão perceptível) e envia.
 4. Aguarda a resposta por **polling com heurística de estabilidade** (texto idêntico por
    N leituras seguidas = streaming terminou), com timeout.
 5. Abre o painel **"N sources"** e **extrai todas as fontes** (título completo + URL).

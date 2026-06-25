@@ -108,29 +108,48 @@ class StealthUtils:
     def find_first(page: Page, selectors: List[str], timeout_ms: int = 10000,
                    state: str = "visible") -> Optional[object]:
         """
-        Tenta cada seletor da lista até achar um elemento. Retorna o handle
-        do elemento e imprime qual seletor funcionou (útil para debug ao vivo).
+        Tenta cada seletor sem espera primeiro (query_selector); se nenhum
+        estiver presente ainda, aguarda o timeout_ms total pelo primeiro que
+        aparecer, fazendo polling a cada 300 ms sobre todos os seletores.
         """
+        # Passe rápido: sem espera, só verifica o que já está no DOM.
         for selector in selectors:
             try:
-                el = page.wait_for_selector(selector, timeout=timeout_ms, state=state)
-                if el:
-                    print(f"  ✓ Seletor OK: {selector}")
+                el = page.query_selector(selector)
+                if el and el.is_visible():
+                    print(f"  ✓ Seletor OK (rápido): {selector}")
                     return el
             except Exception:
                 continue
+
+        # Passe com polling: tenta todos os seletores em rodízio até o timeout.
+        import time as _time
+        deadline = _time.time() + timeout_ms / 1000
+        while _time.time() < deadline:
+            for selector in selectors:
+                try:
+                    el = page.query_selector(selector)
+                    if el and el.is_visible():
+                        print(f"  ✓ Seletor OK: {selector}")
+                        return el
+                except Exception:
+                    continue
+            _time.sleep(0.3)
         return None
 
     @staticmethod
     def human_type(element, text: str):
         """
-        Digita caractere a caractere com velocidade humana.
-        Funciona tanto em <textarea>/<input> quanto em contenteditable
-        (o .type() do Patchright lida com ambos no elemento focado).
+        Preenche o campo via fill() (instantâneo, sem detecção) e digita
+        apenas os últimos 3 caracteres lentamente para simular interação humana.
         """
         element.click()
-        StealthUtils.random_delay(100, 300)
-        for char in text:
-            element.type(char, delay=random.uniform(25, 75))
-            if random.random() < 0.05:
-                time.sleep(random.uniform(0.15, 0.4))
+        StealthUtils.random_delay(80, 200)
+        if len(text) > 4:
+            element.fill(text[:-3])
+            StealthUtils.random_delay(50, 120)
+            for char in text[-3:]:
+                element.type(char, delay=random.uniform(40, 90))
+        else:
+            for char in text:
+                element.type(char, delay=random.uniform(40, 90))

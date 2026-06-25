@@ -5,6 +5,26 @@ Todas as mudanças relevantes desta skill.
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
 e o projeto adota [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
+## [0.3.0] - 2026-06-24
+
+### Desempenho
+
+- **Localização do campo de pergunta drasticamente mais rápida**: `find_first` agora faz
+  primeiro um passe instantâneo via `query_selector` (sem espera); só se o campo não
+  estiver no DOM ainda é que inicia polling a cada 300 ms até o timeout global. O
+  comportamento anterior fazia `wait_for_selector` com timeout completo (15 s) por
+  seletor — podendo travar até 90 s se o primeiro seletor não batesse.
+- **Placeholders exatos como primeiros seletores**: adicionados
+  `textarea[placeholder*="Explore"]` (placeholder do vertical `/academic`) e
+  `textarea[placeholder*="Type"]` (home) ao topo de `QUERY_INPUT_SELECTORS`. Na prática
+  o campo é encontrado em milissegundos logo após o carregamento da página.
+- **Digitação da pergunta instantânea**: `human_type` agora usa `fill()` para inserir o
+  corpo do texto de uma só vez e digita apenas os 3 últimos caracteres lentamente
+  (para simular interação humana). Uma pergunta de 200 chars que antes levava ~10–15 s
+  agora termina em menos de 1 s.
+- **Removida segunda chamada redundante a `find_first`** em `ask_question.py` antes de
+  digitar (não havia motivo para re-localizar o campo após tê-lo encontrado).
+
 ## [0.1.0] - 2026-06-24
 
 ### Adicionado

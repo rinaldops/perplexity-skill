@@ -10,7 +10,7 @@ até achar um que funcione. Cada bloco tem um comentário datado.
 Durante o desenvolvimento, rode com --show-browser e inspecione o DOM AO VIVO
 para confirmar/atualizar cada seletor. Marque com a data quando confirmar.
 
-Última revisão dos seletores: 2026-06-24 (valores INICIAIS / A VERIFICAR ao vivo)
+Última revisão dos seletores: 2026-06-24 (confirmados: placeholder "Explore" para /academic)
 """
 
 import os
@@ -66,7 +66,9 @@ FOCUS_URLS = {
 # Perplexity historicamente usa um <textarea> com placeholder "Ask anything";
 # em algumas versões é um contenteditable. Vários fallbacks por segurança.
 QUERY_INPUT_SELECTORS = [
+    'textarea[placeholder*="Explore"]',      # placeholder do vertical /academic
     'textarea[placeholder*="Ask"]',          # placeholder "Ask anything..."
+    'textarea[placeholder*="Type"]',         # placeholder "Type / for search modes"
     'textarea[placeholder*="Pergunte"]',     # UI em pt-BR
     'textarea#ask-input',                     # id observado em algumas versões
     'textarea[autofocus]',
